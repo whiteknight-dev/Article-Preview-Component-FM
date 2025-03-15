@@ -29,6 +29,7 @@ body {
 }
 
 .card {
+  max-width: 330px;
   margin: 0 2em;
   background-color: var(--white);
   border-radius: 10px;
@@ -46,12 +47,8 @@ body {
   object-position: top -15px left 0;
 }
 
-.card__body {
-  padding: 0 2.6em 1em;
-}
-
 .card__title {
-  margin-bottom: 1em;
+  margin: 0 3rem 1em;
   color: var(--very-dark-grayish-blue);
   font-size: 1.6rem;
   font-weight: 700;
@@ -59,12 +56,16 @@ body {
 
 .card__paragraph {
   color: var(--desaturated-dark-blue);
-  margin-bottom: 1.5em;
+  margin: 0 3rem 1.5em;
+}
+
+.card__body > section {
+  position: relative;
 }
 
 .card__footer {
   display: flex;
-  margin-bottom: 1em;
+  margin: 0 3rem 2em;
   font-size: 1.3rem;
 }
 
@@ -96,7 +97,6 @@ body {
   margin-left: auto;
   width: 32px;
   height: 32px;
-  background: url("../images/icon-share.svg") no-repeat center;
   background-color: var(--light-grayish-blue);
   border: none;
   border-radius: 50%;
@@ -135,4 +135,81 @@ body {
 
 .share__icon.twitter {
   height: 18px;
+}
+
+@media (min-width: 768px) {
+  body {
+    padding: 0;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    max-width: 1120px;
+    overflow: unset;
+  }
+
+  .card__hero {
+    flex-basis: 42%;
+    margin-bottom: 0;
+    overflow: hidden;
+  }
+
+  .card__img {
+    height: 100%;
+    object-position: left 20px top 0;
+    transform: translateX(-20px);
+  }
+
+  .card__body {
+    padding: 3.6em 2em;
+    flex-basis: 56%;
+  }
+
+  .card__title {
+    margin-bottom: 0.6em;
+    font-size: 2.6rem;
+  }
+
+  .card__paragraph {
+    margin-bottom: 1.6em;
+    font-size: 1.6rem;
+  }
+
+  .card__footer {
+    margin-bottom: 0;
+  }
+
+  .card__share {
+    position: absolute;
+    top: -71px;
+    right: -71px;
+    z-index: 20;
+    justify-content: center;
+    border-radius: 10px;
+  }
+
+  .card__share::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    bottom: -10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--very-dark-grayish-blue);
+  }
+
+  .share-button.secondary {
+    display: none;
+  }
+
+  .active {
+    background-color: var(--desaturated-dark-blue);
+  }
+
+  .share__icon.pinterest {
+    margin-right: 0;
+  }
 }
