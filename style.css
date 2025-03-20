@@ -29,6 +29,7 @@ body {
 }
 
 .card {
+  width: 323px;
   max-width: 330px;
   margin: 0 2em;
   background-color: var(--white);
@@ -56,17 +57,29 @@ body {
 
 .card__paragraph {
   color: var(--desaturated-dark-blue);
-  margin: 0 3rem 1.5em;
+  margin: 0 3rem;
 }
 
-.card__body > section {
+.card__footer-section {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 3rem;
+  padding: 2.3em 0 1.4em;
+}
+
+.card__footer-section.active {
+  background-color: var(--very-dark-grayish-blue);
+  margin: 0;
+  margin-top: 2.2em;
+  padding: 0.6em 2.6em;
 }
 
 .card__footer {
   display: flex;
-  margin: 0 3rem 2em;
   font-size: 1.3rem;
+  transition: opacity 0.3s ease;
 }
 
 .card__footer img {
@@ -93,8 +106,6 @@ body {
 }
 
 .share-button {
-  align-self: center;
-  margin-left: auto;
   width: 32px;
   height: 32px;
   background-color: var(--light-grayish-blue);
@@ -103,19 +114,33 @@ body {
   cursor: pointer;
 }
 
-.share-button.secondary {
+.share-button.active {
   background-color: var(--desaturated-dark-blue);
 }
 
+.share-button.active #svg {
+  fill: var(--white);
+}
+
 .card__share {
+  position: absolute;
   display: flex;
   align-items: center;
-  padding: 1em 2.6em;
-  background-color: var(--very-dark-grayish-blue);
+  opacity: 0;
+  padding: 1em 0;
+  transition: opacity 0.3s ease;
+}
+
+.card__share.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
 
 .hidden {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .card__share h2 {
@@ -137,7 +162,7 @@ body {
   height: 18px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   body {
     padding: 0;
   }
@@ -145,7 +170,7 @@ body {
   .card {
     display: flex;
     flex-direction: row;
-    width: 80%;
+    width: 66%;
     max-width: 1120px;
     overflow: unset;
   }
@@ -177,15 +202,22 @@ body {
     font-size: 1.6rem;
   }
 
+  .card__footer-section.active {
+    background-color: var(--white);
+    margin: 0 3rem;
+    padding: 2.3em 0 1.4em;
+  }
+
   .card__footer {
     margin-bottom: 0;
   }
 
   .card__share {
-    position: absolute;
-    top: -71px;
-    right: -71px;
+    width: 50%;
+    top: -40px;
+    right: -90px;
     z-index: 20;
+    background-color: var(--very-dark-grayish-blue);
     justify-content: center;
     border-radius: 10px;
   }
@@ -201,12 +233,14 @@ body {
     border-top: 10px solid var(--very-dark-grayish-blue);
   }
 
-  .share-button.secondary {
-    display: none;
+  .hidden {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: unset;
   }
 
-  .active {
-    background-color: var(--desaturated-dark-blue);
+  .share__icon {
+    cursor: pointer;
   }
 
   .share__icon.pinterest {
